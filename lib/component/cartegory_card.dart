@@ -20,6 +20,7 @@ class CartegoryCard extends StatelessWidget {
               CardTitle(title: '종류별 통계'),
               Expanded(
                 child: ListView(
+                  physics: PageScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   children: List.generate(
                     20,

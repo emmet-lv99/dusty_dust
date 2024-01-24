@@ -1,4 +1,5 @@
 import 'package:dusty_dust/model/stat_model.dart';
+import 'package:dusty_dust/utils/data_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../const/status_level.dart';
@@ -35,7 +36,7 @@ class MainAppBar extends StatelessWidget {
                       ts.copyWith(fontSize: 40.0, fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  getTimeFromDateTime(dateTime: stat.dataTime),
+                  DataUtils.getTimeFromDateTime(dateTime: stat.dataTime),
                   style: ts.copyWith(fontSize: 20),
                 ),
                 SizedBox(height: 20.0),

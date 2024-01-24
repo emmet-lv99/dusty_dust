@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class StatusModel {
@@ -29,6 +27,8 @@ class StatusModel {
   final double minO2;
   //일산화탄소 최소치
   final double minCO;
+  //이산화질소 최소치
+  final double minNO2;
   //이황산가스 최소치
   final double minSO2;
 
@@ -46,6 +46,7 @@ class StatusModel {
     required this.minO3,
     required this.minO2,
     required this.minCO,
+    required this.minNO2,
     required this.minSO2,
   });
 }
@@ -140,6 +141,7 @@ final statusLevel = [
     minO3: 0,
     minO2: 0,
     minCO: 0,
+    minNO2: 0,
     minSO2: 0,
   ),
 
@@ -158,6 +160,7 @@ final statusLevel = [
     minO3: 0.02,
     minO2: 0.02,
     minCO: 1,
+    minNO2: 0.02,
     minSO2: 0.01,
   ),
 
@@ -176,6 +179,7 @@ final statusLevel = [
     minO3: 0.03,
     minO2: 0.03,
     minCO: 2,
+    minNO2: 0.03,
     minSO2: 0.02,
   ),
 
@@ -194,6 +198,7 @@ final statusLevel = [
     minO3: 0.06,
     minO2: 0.05,
     minCO: 5.5,
+    minNO2: 0.05,
     minSO2: 0.04,
   ),
 
@@ -212,6 +217,7 @@ final statusLevel = [
     minO3: 0.09,
     minO2: 0.06,
     minCO: 9,
+    minNO2: 0.06,
     minSO2: 0.05,
   ),
 
@@ -230,6 +236,7 @@ final statusLevel = [
     minO3: 0.12,
     minO2: 0.13,
     minCO: 12,
+    minNO2: 0.13,
     minSO2: 0.1,
   ),
 
@@ -248,6 +255,7 @@ final statusLevel = [
     minO3: 0.15,
     minO2: 0.2,
     minCO: 15,
+    minNO2: 0.2,
     minSO2: 0.15,
   ),
 
@@ -266,6 +274,7 @@ final statusLevel = [
     minO3: 0.38,
     minO2: 1.1,
     minCO: 32,
+    minNO2: 1.1,
     minSO2: 0.16,
   ),
 ];

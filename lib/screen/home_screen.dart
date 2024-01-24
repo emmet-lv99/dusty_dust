@@ -3,9 +3,11 @@ import 'package:dusty_dust/component/hourly_card.dart';
 import 'package:dusty_dust/component/main_app_bar.dart';
 import 'package:dusty_dust/component/main_drawer.dart';
 import 'package:dusty_dust/const/colors.dart';
+import 'package:dusty_dust/const/regions.dart';
 import 'package:dusty_dust/const/status_level.dart';
 import 'package:dusty_dust/model/stat_model.dart';
 import 'package:dusty_dust/repository/stat_repository.dart';
+import 'package:dusty_dust/utils/data_utils.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String region = regions[0];
+
   Future<List<StatModel>> fetchData() async {
     final statModels = await StatRepository.fetchData();
     return statModels;
@@ -29,7 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: MainDrawer(
+        selectedRegion: region,
+        onRegionTap: (String region) {
+          setState(() {
+            this.region = region;
+            Navigator.of(context).pop();
+          });
+        },
+      ),
       backgroundColor: primaryColor,
       body: FutureBuilder<List<StatModel>>(
         future: fetchData(),
@@ -47,12 +59,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
           final stats = snapshot.data!;
           StatModel recentStat = stats[0];
-          final StatusModel status = statusLevel
-              .where((element) => element.minFineDust < recentStat.seoul)
-              .last;
+          final StatusModel status = DataUtils.getStatusFromItemCodeAndValue(
+            value: recentStat.seoul,
+            itemCode: ItemCode.PM10,
+          );
+
           return CustomScrollView(
             slivers: [
               MainAppBar(
+                region: region,
                 stat: recentStat,
                 status: status,
               ),
